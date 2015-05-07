@@ -25,6 +25,7 @@
 		<div class="menu">
 			<a href="#">Home</a>
 			<a href="#">Gerenciar Anotações</a>
+			<a href="excluirusuario.jsp">Excluir Usuário</a>
 			<a href="<c:url value="executa?op=logout"/>">logout</a>
 		</div>
 	</div>

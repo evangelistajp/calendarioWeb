@@ -83,11 +83,31 @@ public class ControllerFacade {
 	       	daoUsuario.update(usuario);
 	    	 
 	    	DAO.commit();
+	    	System.out.println("Senha alterada com sucesso");
 	    }
 		
 		return null;
 	}
 
+	public static Usuario excluirusuario(String emailexcluir) {
+		
+		DAO.begin();
+
+		Usuario usuario = daoUsuario.readByEmail(emailexcluir);
+		System.out.println("usuario " + usuario);
+		
+		if (usuario.isIsadmin()==false) {
+			
+			daoUsuario.delete(usuario);
+			System.out.println("usuario excluido com sucesso");
+			
+			DAO.commit();
+			
+
+		}
+		return null;
+
+	}
 	
 	public Usuario findByNome(String nomeCalendario) {
 		return daoUsuario.findByNome(nomeCalendario);
@@ -111,5 +131,7 @@ public class ControllerFacade {
 	public List<Feriado> findAllFeriados(){
 		return daoFeriado.readAll();
 	}
+
+
 }
 

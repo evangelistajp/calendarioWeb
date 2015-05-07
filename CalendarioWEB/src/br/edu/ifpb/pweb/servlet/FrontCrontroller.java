@@ -1,7 +1,6 @@
 package br.edu.ifpb.pweb.servlet;
 
 import java.io.IOException;
-import java.io.PrintWriter;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -13,7 +12,6 @@ import javax.servlet.http.HttpSession;
 import br.edu.ifpb.pweb.controller.ControllerFacade;
 import br.edu.ifpb.pweb.dao.DAO;
 import br.edu.ifpb.pweb.exception.CadastroException;
-import br.edu.ifpb.pweb.exception.ErroLogicoException;
 import br.edu.ifpb.pweb.model.Usuario;
 
 
@@ -117,7 +115,19 @@ public class FrontCrontroller extends HttpServlet {
 			request.getRequestDispatcher("mudarSenha.jsp").forward(request, response);
 			
 			break;	
-	
+		case "excluirusuario":
+			String emailexcluir = request.getParameter("email");
+		    try {
+		    	us= ControllerFacade.excluirusuario(emailexcluir);
+		    	request.setAttribute("ok", "Usuario excluido com sucesso");
+		    	request.getRequestDispatcher("index.jsp").forward(request, response);
+				
+			} catch (Exception e) {
+				request.setAttribute("erro", "Email não corresponde a conta: ");
+				request.getRequestDispatcher("excluirusuario.jsp").forward(request, response);
+			}	
+
+			break;
 			
 		default:
 			break;
