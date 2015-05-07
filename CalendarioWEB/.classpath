@@ -4,10 +4,10 @@
 	<classpathentry kind="con" path="org.eclipse.jst.j2ee.internal.web.container"/>
 	<classpathentry kind="con" path="org.eclipse.jst.j2ee.internal.module.container"/>
 	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER"/>
-	<classpathentry kind="lib" path="G:/workspace/lib/lib/eclipselink.jar"/>
-	<classpathentry kind="lib" path="G:/workspace/lib/lib/javax.persistence_2.1.0.v201304241213.jar"/>
-	<classpathentry kind="lib" path="G:/workspace/lib/lib/jstl-1.2.jar"/>
-	<classpathentry kind="lib" path="G:/workspace/lib/lib/postgresql-8.3-603.jdbc3.jar"/>
 	<classpathentry kind="con" path="org.eclipse.jst.server.core.container/org.eclipse.jst.server.tomcat.runtimeTarget/Apache Tomcat v8.0"/>
+	<classpathentry kind="lib" path="C:/Users/Evangelista/Documents/GitHub/lib/eclipselink.jar"/>
+	<classpathentry kind="lib" path="C:/Users/Evangelista/Documents/GitHub/lib/javax.persistence_2.1.0.v201304241213.jar"/>
+	<classpathentry kind="lib" path="C:/Users/Evangelista/Documents/GitHub/lib/jstl-1.2.jar"/>
+	<classpathentry kind="lib" path="C:/Users/Evangelista/Documents/GitHub/lib/postgresql-9.4-1201.jdbc4.jar"/>
 	<classpathentry kind="output" path="build/classes"/>
 </classpath>

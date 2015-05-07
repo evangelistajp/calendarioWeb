@@ -32,7 +32,7 @@
 	<hr>
 	<div class="container">
 		<h1>Calendario</h1>
-		<div id="calendar"></div>
+		<div id="calendar"><%@ include file ="calendario.jsp" %></div>
 	</div>
 </body>
 </html>

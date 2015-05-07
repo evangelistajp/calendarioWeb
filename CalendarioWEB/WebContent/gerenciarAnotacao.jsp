@@ -23,14 +23,27 @@
 		<h3>Usuário : ${usuario}</h3>
 		<div class="menu">
 			<a href="usuario.jsp">Home</a>
-			<a href="">Add Anotação </a>
+			<a href="CadastrarAnotacao.jsp">Add Anotação </a>
 			<a href="<c:url value="executa?op=logout"/>">logout</a>
 		</div>
 	</div>
+	
+	<table class="table">
+		<c:forEach var="anotacao" items="${anotacoes}">
+			<hr>
+			<tr>
+				<td>${anotacao.mensagem}</td>
+				<td>${anotacao.data}</td>
+				<td><a href="">Editar</a></td>
+				<td><a href="">Excluir</a></td>
+			</tr>
+		</c:forEach>
+	</table>
 	<hr>
 	<div class="container">
 		<h1>Calendario</h1>
-		<div id="calendar"></div>
+		<div id="calendar"><%@ include file ="calendario.jsp" %></div>
+		
 	</div>
 </body>
 </html>

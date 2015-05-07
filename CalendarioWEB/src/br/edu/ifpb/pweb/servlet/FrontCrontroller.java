@@ -36,37 +36,37 @@ public class FrontCrontroller extends HttpServlet {
 		switch (op) {
 		case "login":
 			//Resgata parâmetros da requisição
-				
-				this.email = request.getParameter("email");
-				this.senha = request.getParameter("senha");
-				try {
-					us = ControllerFacade.realizaLogin(email, senha);
+			System.out.println("login");
+			this.email = request.getParameter("email");
+			this.senha = request.getParameter("senha");
+			try {
+				us = ControllerFacade.realizaLogin(email, senha);
 					
-					if (us != null) {
-						System.out.println("Usuario Logado com sucesso");
-						if (us.isIsadmin()) {
-							System.out.println(us);
-							HttpSession session = request.getSession(true);
-							session.setAttribute("admin", us.getEmail());
-							//request.setAttribute("admin", us.getEmail());
-							request.getRequestDispatcher("admin.jsp").forward(request, response);
-						}else{
-							System.out.println(us);
-							HttpSession session = request.getSession(true);
-							session.setAttribute("usuario", us.getEmail());
-							//request.setAttribute("usuario", us.getEmail());
-							request.getRequestDispatcher("usuario.jsp").forward(request, response);
-						}
+				if (us != null) {
+					System.out.println("Usuario Logado com sucesso");
+					if (us.isIsadmin()) {
+						System.out.println(us);
+						HttpSession session = request.getSession(true);
+						session.setAttribute("admin", us.getEmail());
+						//request.setAttribute("admin", us.getEmail());
+						request.getRequestDispatcher("admin.jsp").forward(request, response);
+					}else{
+						System.out.println(us);
+						HttpSession session = request.getSession(true);
+						session.setAttribute("usuario", us.getEmail());
+						//request.setAttribute("usuario", us.getEmail());
+						request.getRequestDispatcher("usuario.jsp").forward(request, response);
 					}
-				} catch (Exception e) {
-					request.setAttribute("erro", "Usuário ou senha inexistente ");
-					request.getRequestDispatcher("index.jsp").forward(request, response);
-
-					//System.out.println(e.getMessage());
 				}
-				
+			} catch (Exception e) {
+				request.setAttribute("erro", "Usuário ou senha inexistente ");
+				request.getRequestDispatcher("index.jsp").forward(request, response);
+
+				//System.out.println(e.getMessage());
+			}
 			break;
 		case "cadastrar":
+			System.out.println("cadastrar Usuário");
 			this.nome = request.getParameter("nome");
 			this.email = request.getParameter("email");
 			this.senha = request.getParameter("senha");
@@ -92,7 +92,7 @@ public class FrontCrontroller extends HttpServlet {
 			
 			break;
 		case "mudarsenha":
-			
+			System.out.println("Mudar Senha");
 			String email = request.getParameter("email");
 			String novasenha = request.getParameter("novasenha");
 			String novasenha2 = request.getParameter("novasenha2");
@@ -116,6 +116,7 @@ public class FrontCrontroller extends HttpServlet {
 			
 			break;	
 		case "excluirusuario":
+			System.out.println("Excluir Usuário");
 			String emailexcluir = request.getParameter("email");
 		    try {
 		    	us= ControllerFacade.excluirusuario(emailexcluir);
@@ -127,6 +128,11 @@ public class FrontCrontroller extends HttpServlet {
 				request.getRequestDispatcher("excluirusuario.jsp").forward(request, response);
 			}	
 
+			break;
+		case "cadastrarAnotacao":
+			System.out.println("cadastro de Anotação");
+			
+			
 			break;
 			
 		default:
