@@ -3,12 +3,15 @@ package br.edu.ifpb.pweb.model;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.Inheritance;
 import javax.persistence.InheritanceType;
+import javax.persistence.OneToMany;
 
 
 
@@ -23,7 +26,9 @@ public class Usuario {
 	private String email;
 	private String senha;
 	private boolean isadmin;
-	//private List<Evento> eventos = new ArrayList<Evento>();
+	
+	@OneToMany(mappedBy="usuario", cascade = CascadeType.DETACH, fetch = FetchType.EAGER)
+	private List<Anotacao> eventos = new ArrayList<Anotacao>();
 	
 	public Usuario() {
 		
@@ -68,12 +73,31 @@ public class Usuario {
 	public void setIsadmin(boolean isadmin) {
 		this.isadmin = isadmin;
 	}
+	
+	public List<Anotacao> getEventos() {
+		return eventos;
+	}
 
+	public void setEventos(List<Anotacao> eventos) {
+		this.eventos = eventos;
+	}
+
+	public void setEvento(Anotacao evento){
+		this.eventos.add(evento);
+	}
+	
+	public void removerEvento(Anotacao evento){
+		this.eventos.remove(evento);
+	}
+	
+	
 	@Override
 	public String toString() {
 		return "Usuario [id=" + id + ", nome=" + nome + ", email=" + email
-				+ ", senha=" + senha + ", isadmin=" + isadmin + "]";
+				+ ", senha=" + senha + ", isadmin=" + isadmin + ", eventos="
+				+ eventos + "]";
 	}
+
 
 	
 	
