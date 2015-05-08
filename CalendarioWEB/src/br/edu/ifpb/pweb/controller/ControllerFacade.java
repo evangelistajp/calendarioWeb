@@ -33,6 +33,7 @@ public class ControllerFacade {
 	
 	public static void open(){
 		daoUsuario = new DAOUsuario();
+		daoAnotacao = new DAOAnotacao();
 		daoCalendario = new DAOCalendario();
 		daoFeriado = new DAOFeriado();
 
@@ -143,6 +144,38 @@ public class ControllerFacade {
 		return an;
 	}
 	
+	public static Anotacao editaranotacao(String id){
+		DAO.begin();
+		
+		
+		Anotacao anotacao = daoAnotacao.findByID(id);
+		
+		
+
+		return null;
+		
+		
+	}
+	
+	public static Anotacao excluiranotacao(String id){
+		DAO.begin();
+		
+		
+		Anotacao anotacao = daoAnotacao.findByID(id);
+		
+		Usuario us = anotacao.getUsuario();
+		
+		daoAnotacao.delete(anotacao);
+		us.removerAnotacao(anotacao);
+		
+		DAO.commit();
+		
+		return null;
+		
+		
+	}
+	
+	
 	public Usuario findByNome(String nomeCalendario) {
 		return daoUsuario.findByNome(nomeCalendario);
 	}
@@ -160,6 +193,17 @@ public class ControllerFacade {
 		
 	public List<Feriado> findAllFeriados(){
 		return daoFeriado.readAll();
+	}
+
+	public static Usuario buscaUsuario(String email) {
+		
+		DAO.begin();
+		
+		Usuario usuario = daoUsuario.readByEmail(email);
+		System.out.println("usuario " + usuario);
+		
+		DAO.close();
+		return usuario;
 	}
 
 

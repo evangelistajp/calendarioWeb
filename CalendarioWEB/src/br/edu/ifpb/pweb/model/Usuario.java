@@ -86,8 +86,8 @@ public class Usuario {
 		this.anotacoes.add(anotacao);
 	}
 	
-	public void removerEvento(Anotacao evento){
-		this.anotacoes.remove(evento);
+	public void removerAnotacao(Anotacao anotacao){
+		this.anotacoes.remove(anotacao);
 	}
 	
 	

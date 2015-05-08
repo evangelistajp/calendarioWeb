@@ -68,8 +68,8 @@ public class Anotacao {
 
 	@Override
 	public String toString() {
-		return "Evento [id=" + id + ", descricao=" + descricao + ", data="
-				+ data + ", usuario=" + usuario + "]";
+		return "Anotação [id=" + id + ", descricao=" + descricao + ", data="
+				+ data + ", usuario=" + usuario.getEmail() + "]";
 	}
 	
 	

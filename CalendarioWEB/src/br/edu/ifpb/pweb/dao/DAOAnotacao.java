@@ -10,8 +10,8 @@ public class DAOAnotacao extends DAO<Anotacao>{
 		// TODO Auto-generated constructor stub
 	}
 	
-	public Anotacao findByID(String id){
-		return  (Anotacao) super.findByQuery("select e from Evento e where e.senha = " + id);
+	public  Anotacao findByID(String id){
+		return  (Anotacao) super.findByQuery("select e from Anotacao e where e.id = '" + id+ "'");
 	}
 	
 	public List<Anotacao> findByAll(){

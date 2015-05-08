@@ -2,6 +2,9 @@ package br.edu.ifpb.pweb.servlet;
 
 import java.io.IOException;
 import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.ArrayList;
+import java.util.List;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -26,9 +29,13 @@ public class FrontCrontroller extends HttpServlet {
 	private String nome;
 	private String email;
 	private String senha;
+	private String data;
+	private String id;
+	
 	
 	protected void doRequest(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
+		HttpSession session = request.getSession();
 		String op = request.getParameter("op");
 		
 		DAO.open();
@@ -49,13 +56,13 @@ public class FrontCrontroller extends HttpServlet {
 					System.out.println("Usuario Logado com sucesso");
 					if (us.isIsadmin()) {
 						System.out.println(us);
-						HttpSession session = request.getSession(true);
+						session = request.getSession(true);
 						session.setAttribute("admin", us.getEmail());
 						//request.setAttribute("admin", us.getEmail());
 						request.getRequestDispatcher("admin.jsp").forward(request, response);
 					}else{
 						System.out.println(us);
-						HttpSession session = request.getSession(true);
+						session = request.getSession(true);
 						session.setAttribute("usuario", us.getEmail());
 						//request.setAttribute("usuario", us.getEmail());
 						request.getRequestDispatcher("usuario.jsp").forward(request, response);
@@ -89,7 +96,7 @@ public class FrontCrontroller extends HttpServlet {
 		case "logout":
 			
 			System.out.println("logout");
-			HttpSession session = request.getSession();
+			session = request.getSession();
 			session.invalidate();
 			request.getRequestDispatcher("index.jsp").forward(request, response);
 			
@@ -137,18 +144,63 @@ public class FrontCrontroller extends HttpServlet {
 			this.email = request.getParameter("email");
 			String desc = request.getParameter("desc");
 			String data = request.getParameter("data");
-			System.out.println("ok1");
+			
 			System.out.println(data);
 			try {
 				an = ControllerFacade.addAnotacao(this.email,desc, data);
 				request.setAttribute("ok", "Anotação add");
-		    	request.getRequestDispatcher("usuario.jsp").forward(request, response);
+		    	request.getRequestDispatcher("gerenciarAnotacao.jsp").forward(request, response);
 			} catch (ParseException e) {
 				e.printStackTrace();
 			}
 			
 			break;
+		case "anotacoes":
+			session = request.getSession();
 			
+			if(session.getAttribute("usuario") != null) {
+				
+				this.email = (String) session.getAttribute("usuario");
+				Usuario usuario = ControllerFacade.buscaUsuario(this.email);
+				
+				List<Anotacao> anotacoes = new ArrayList<Anotacao>();
+				
+				anotacoes = usuario.getAnotacoes();
+								
+				request.setAttribute("anotacoes", anotacoes);
+			}
+			
+			//request.setAttribute("feriados", listaFeriados);
+			request.getRequestDispatcher("listarAnotacao.jsp").forward(request, response);;
+		
+		
+			break;
+		case "editarAnotacao":
+			
+			this.id = request.getParameter("id");
+			
+			
+			
+			
+			
+			break;
+		case "excluirAnotacao":
+			
+			this.id = request.getParameter("id");
+			
+			try {
+				an = ControllerFacade.excluiranotacao(this.id);
+				
+				request.setAttribute("ok", "Anotação excluida");
+		    	request.getRequestDispatcher("gerenciarAnotacao.jsp").forward(request, response);
+				
+			} catch (Exception e) {
+				// TODO: handle exception
+			}
+			
+			break;	
+			
+
 		default:
 			break;
 		}	
