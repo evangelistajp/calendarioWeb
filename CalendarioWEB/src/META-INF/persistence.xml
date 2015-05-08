@@ -5,8 +5,6 @@
 	<class>br.edu.ifpb.pweb.model.Anotacao</class>
 	<class>br.edu.ifpb.pweb.model.Calendario</class>
 	<class>br.edu.ifpb.pweb.model.Feriado</class>
-	<class>br.edu.ifpb.pweb.model.FeriadoFixo</class>
-	<class>br.edu.ifpb.pweb.model.FeriadoMovel</class>
 	
 	
 		<properties>

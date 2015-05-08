@@ -1,12 +1,16 @@
 package br.edu.ifpb.pweb.model;
 
 
+import java.util.Date;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.Inheritance;
 import javax.persistence.InheritanceType;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
 
 @Entity
 @Inheritance(strategy= InheritanceType.SINGLE_TABLE)
@@ -16,11 +20,10 @@ public class Feriado {
 	@GeneratedValue
 	private long id;
 	@Column(unique=true)
-	private String descricao;
-	private int dia;
-	private int mes;
-	@Column(nullable=true)
-	private int ano;
+	private String nome;
+	@Temporal(TemporalType.DATE)
+	private Date data;
+	private boolean fixo;
 		
 	public Feriado() {
 		// TODO Auto-generated constructor stub
@@ -34,42 +37,37 @@ public class Feriado {
 		this.id = id;
 	}
 
-	public String getDescicao() {
-		return descricao;
+	public String getNome() {
+		return nome;
 	}
 
-	public void setDescicao(String descicao) {
-		this.descricao = descicao;
+	public void setNome(String nome) {
+		this.nome = nome;
 	}
 
-	public int getDia() {
-		return dia;
+	public Date getData() {
+		return data;
 	}
 
-	public void setDia(int dia) {
-		this.dia = dia;
+	public void setData(Date data) {
+		this.data = data;
 	}
 
-	public int getMes() {
-		return mes;
+	public boolean isFixo() {
+		return fixo;
 	}
 
-	public void setMes(int mes) {
-		this.mes = mes;
-	}
-
-	public int getAno() {
-		return ano;
-	}
-
-	public void setAno(int ano) {
-		this.ano = ano;
+	public void setFixo(boolean fixo) {
+		this.fixo = fixo;
 	}
 
 	@Override
 	public String toString() {
-		return "Feriado [id=" + id + ", descricao=" + descricao + "]";
+		return "Feriado [id=" + id + ", nome=" + nome + ", data=" + data
+				+ ", fixo=" + fixo + "]";
 	}
+
+	
 	
 	
 

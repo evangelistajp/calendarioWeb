@@ -44,13 +44,20 @@ public class ControllerFacade {
 		
 		DAO.begin();
 		
+		List<Usuario> list = daoUsuario.readAll();
+		
 		Usuario us = daoUsuario.readByEmail(email);
 		
 		if (us != null) {
 			throw new CadastroException("Usuario ja cadastrado: " + email +"\n");
 		}
 		
-		us = new Usuario(nome, email, senha);
+		System.out.println(list.size());
+		if(list.size() == 0){
+			us = new Usuario(nome, email, senha, true);
+		}else{
+			us = new Usuario(nome, email, senha, false);
+		}
 		
 		daoUsuario.create(us);
 		
@@ -140,10 +147,29 @@ public class ControllerFacade {
 		
 		DAO.commit();
 		
-		
-		
 		return an;
 	}
+	
+	public static Feriado addFeriado(String nome, String data, boolean fixo) throws ParseException{
+		
+		DAO.begin();
+		
+		Date datafor = format.parse(data);
+		
+		System.out.println(datafor);
+		
+		Feriado fe = new Feriado();
+		fe.setNome(nome);
+		fe.setData(datafor);
+ 		fe.setFixo(fixo);
+ 		
+ 		daoFeriado.update(fe);
+ 		
+ 		DAO.commit();
+ 		
+		return fe;
+	}
+
 	
 	public static Anotacao editarAnotacao(String id, String desc, String data) throws ParseException{
 		DAO.begin();
@@ -182,8 +208,7 @@ public class ControllerFacade {
 		
 		DAO.commit();
 		
-		return null;
-		
+		return null;	
 		
 	}
 	
@@ -227,6 +252,7 @@ public class ControllerFacade {
 		return anotacao;
 	}
 
+	
 
 
 

@@ -17,6 +17,7 @@ import br.edu.ifpb.pweb.controller.ControllerFacade;
 import br.edu.ifpb.pweb.dao.DAO;
 import br.edu.ifpb.pweb.exception.CadastroException;
 import br.edu.ifpb.pweb.model.Anotacao;
+import br.edu.ifpb.pweb.model.Feriado;
 import br.edu.ifpb.pweb.model.Usuario;
 
 
@@ -26,12 +27,14 @@ public class FrontCrontroller extends HttpServlet {
     
 	Usuario us = null;
 	Anotacao an = null;
+	Feriado fe = null;
 	private String nome;
 	private String email;
 	private String senha;
 	private String data;
 	private String id;
 	private String desc;
+	private boolean fixo;
 	
 	
 	protected void doRequest(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
@@ -156,6 +159,26 @@ public class FrontCrontroller extends HttpServlet {
 			}
 			
 			break;
+		case "cadastrarFeriado":
+				System.out.println("cadastro de Feriado");
+				
+				this.nome = request.getParameter("nome");
+				this.data = request.getParameter("data");
+				this.fixo = request.getParameter("fixo") != null;
+				
+				System.out.println(this.fixo);
+				
+				System.out.println(this.data);
+				try {
+					fe = ControllerFacade.addFeriado(this.nome, this.data, this.fixo );
+					request.setAttribute("ok", "Feriado add");
+					request.getRequestDispatcher("admin.jsp").forward(request, response);
+				} catch (ParseException e) {
+					e.printStackTrace();
+				}
+				
+				break;	
+			
 		case "anotacoes":
 			session = request.getSession();
 			
@@ -225,7 +248,7 @@ public class FrontCrontroller extends HttpServlet {
 			}
 			
 		break;	
-
+		
 		default:
 			break;
 		}	
