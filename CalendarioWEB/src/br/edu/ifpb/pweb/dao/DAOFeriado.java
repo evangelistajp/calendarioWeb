@@ -16,7 +16,7 @@ public class DAOFeriado extends DAO<Feriado>{
 	}
 
 	public List<Feriado> findByAll(){
-		return readAll();
+		return  readAll();
 		
 	}
 

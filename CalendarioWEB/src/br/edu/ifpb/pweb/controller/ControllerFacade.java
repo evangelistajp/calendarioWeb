@@ -277,10 +277,12 @@ public class ControllerFacade {
 		DAO.begin();
 		
 		Feriado feriado = daoFeriado.findByID(id);
+		
 		return feriado;
 	}
 
 	public static List<Feriado> buscaFeriados() {
+		DAO.begin();
 		System.out.println("busca feriados");
 		return daoFeriado.findByAll();
 	}

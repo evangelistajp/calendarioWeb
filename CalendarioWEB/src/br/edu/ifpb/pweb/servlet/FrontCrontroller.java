@@ -207,9 +207,19 @@ public class FrontCrontroller extends HttpServlet {
 			request.setAttribute("feriados", feriados);
 			
 			request.getRequestDispatcher("listarFeriado.jsp").forward(request, response);
-			System.out.println("ok eu passei por aki");
 			
 			break;
+		case "feriadosAll":
+			
+			List<Feriado> feriadosall = new ArrayList<Feriado>();
+			
+			feriados = ControllerFacade.buscaFeriados();
+			
+			request.setAttribute("feriados", feriadosall);
+			
+			request.getRequestDispatcher("listar.jsp").forward(request, response);
+			
+			break;	
 		case "buscarAnotacao":
 			
 				this.id = request.getParameter("id");
