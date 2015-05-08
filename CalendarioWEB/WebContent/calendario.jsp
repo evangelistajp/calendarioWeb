@@ -203,9 +203,32 @@
 </head>
 <body>
 	<div id='wrap'>
-
+		<div class="container">
+		<h4>Feriados</h4>			
+		<c:if test="${not empty feriados}">
+			<table class="table">
+				<c:forEach var="feriado" items="${feriados}">
+					<tr>
+						<td>${feriado.nome}</td>
+						<td>${feriado.data}</td>
+					</tr>
+				</c:forEach>
+			</table>
+		</c:if>
+		<c:if test="${not empty anotacoes}">
+			<h4>Feriados</h4>
+			<table class="table">
+				<c:forEach var="anotacao" items="${anotacoes}">
+					<tr>
+						<td>${anotacao.desc}</td>
+						<td>${anotacao.data}</td>
+					</tr>
+				</c:forEach>
+			</table>
+		</c:if>		
+	</div>
 		<div id='calendar'></div>
-
+		
 		<div style='clear:both'></div>
 	</div>	
 	

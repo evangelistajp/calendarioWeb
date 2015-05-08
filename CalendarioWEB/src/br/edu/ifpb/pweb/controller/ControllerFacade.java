@@ -190,10 +190,27 @@ public class ControllerFacade {
 				
 		DAO.commit();
 		
-		return anotacao;
-		
-		
+		return anotacao;		
 	}
+	
+	public static Feriado editarFeriado(String id, String nome, String data) throws ParseException{
+		DAO.begin();
+		
+		Feriado feriado = daoFeriado.findByID(id);
+		System.out.println(feriado);
+		
+		feriado.setNome(nome);
+		Date datafor = format.parse(data);
+		feriado.setData(datafor);
+		
+		daoFeriado.update(feriado);
+		
+		DAO.commit();
+		
+		return feriado;
+	}
+
+
 	
 	public static Anotacao excluiranotacao(String id){
 		DAO.begin();
@@ -211,6 +228,17 @@ public class ControllerFacade {
 		return null;	
 		
 	}
+	public static Anotacao excluirFeriados(String id) {
+		DAO.begin();
+		
+		Feriado feriado = daoFeriado.findByID(id);
+		
+		daoFeriado.delete(feriado);
+		
+		DAO.commit();
+		
+		return null;
+	}
 	
 	
 	public Usuario findByNome(String nomeCalendario) {
@@ -227,11 +255,6 @@ public class ControllerFacade {
 		
 	}
 	
-		
-	public List<Feriado> findAllFeriados(){
-		return daoFeriado.readAll();
-	}
-
 	public static Usuario buscaUsuario(String email) {
 		
 		DAO.begin();
@@ -247,12 +270,26 @@ public class ControllerFacade {
 		DAO.begin();
 				
 		Anotacao anotacao = daoAnotacao.findByID(id);
-		
-		
 		return anotacao;
 	}
 
+	public static Feriado buscarFeriado(String id) {
+		DAO.begin();
+		
+		Feriado feriado = daoFeriado.findByID(id);
+		return feriado;
+	}
+
+	public static List<Feriado> buscaFeriados() {
+		System.out.println("busca feriados");
+		return daoFeriado.findByAll();
+	}
+
 	
+
+
+
+
 
 
 

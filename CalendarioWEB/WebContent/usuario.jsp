@@ -22,6 +22,8 @@
 	
 	<div class="container">
 		<h3>Usuário : ${usuario}</h3>
+		<div style='color:red'><h4>${erro}</h4></div>
+	    <div style='color:green'><h4>${ok}</h4></div>
 		<div class="menu">
 			<a href="#">Home</a>
 			<a href="gerenciarAnotacao.jsp">Gerenciar Anotações</a>

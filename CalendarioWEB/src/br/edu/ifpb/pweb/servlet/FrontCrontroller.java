@@ -195,11 +195,22 @@ public class FrontCrontroller extends HttpServlet {
 			}
 			
 			//request.setAttribute("feriados", listaFeriados);
-			request.getRequestDispatcher("listarAnotacao.jsp").forward(request, response);;
-		
-		
+			request.getRequestDispatcher("listarAnotacao.jsp").forward(request, response);
+			
 			break;
-			case "buscarAnotacao":
+		case "feriados":
+			
+			List<Feriado> feriados = new ArrayList<Feriado>();
+			
+			feriados = ControllerFacade.buscaFeriados();
+			
+			request.setAttribute("feriados", feriados);
+			
+			request.getRequestDispatcher("listarFeriado.jsp").forward(request, response);
+			System.out.println("ok eu passei por aki");
+			
+			break;
+		case "buscarAnotacao":
 			
 				this.id = request.getParameter("id");
 								
@@ -216,6 +227,23 @@ public class FrontCrontroller extends HttpServlet {
 				}
 				
 			break;
+		case "buscarFeriado":
+			
+			this.id = request.getParameter("id");
+							
+			try{
+				
+				fe = ControllerFacade.buscarFeriado(this.id);
+				System.out.println(fe);
+				request.setAttribute("feriado", fe);
+				request.setAttribute("data", fe.getData());
+				request.getRequestDispatcher("editarFeriado.jsp").forward(request, response);
+			
+			} catch (Exception e){
+				
+			}
+			
+		break;	
 		case "excluirAnotacao":
 			
 			this.id = request.getParameter("id");
@@ -231,6 +259,22 @@ public class FrontCrontroller extends HttpServlet {
 			}
 			
 			break;	
+		case "excluirferiado":
+			
+			this.id = request.getParameter("id");
+			
+			try {
+				an = ControllerFacade.excluirFeriados(this.id);
+				
+				request.setAttribute("ok", "Feriado excluido");
+		    	request.getRequestDispatcher("admin.jsp").forward(request, response);
+				
+			} catch (Exception e) {
+				// TODO: handle exception
+			}
+			
+			break;	
+			
 		case "editarAnotacao":
 			
 			this.desc = request.getParameter("desc");
@@ -248,6 +292,23 @@ public class FrontCrontroller extends HttpServlet {
 			}
 			
 		break;	
+		
+		case "editarFeriado":
+			
+			System.out.println("editar feriado");
+			this.nome = request.getParameter("nome");
+			this.data = request.getParameter("data");
+			this.id = request.getParameter("id");
+			//System.out.println(this.data);				
+			try{
+				System.out.println("try");				
+				fe = ControllerFacade.editarFeriado(this.id, this.nome, this.data);
+				request.setAttribute("ok", "Feriado alterada");
+		    	request.getRequestDispatcher("admin.jsp").forward(request, response);
+			
+			} catch (Exception e){
+				
+			}
 		
 		default:
 			break;
