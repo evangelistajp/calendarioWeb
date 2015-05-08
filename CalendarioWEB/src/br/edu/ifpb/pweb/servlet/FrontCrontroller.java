@@ -1,6 +1,7 @@
 package br.edu.ifpb.pweb.servlet;
 
 import java.io.IOException;
+import java.text.ParseException;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -12,6 +13,7 @@ import javax.servlet.http.HttpSession;
 import br.edu.ifpb.pweb.controller.ControllerFacade;
 import br.edu.ifpb.pweb.dao.DAO;
 import br.edu.ifpb.pweb.exception.CadastroException;
+import br.edu.ifpb.pweb.model.Anotacao;
 import br.edu.ifpb.pweb.model.Usuario;
 
 
@@ -20,6 +22,7 @@ public class FrontCrontroller extends HttpServlet {
 	private static final long serialVersionUID = 1L;
     
 	Usuario us = null;
+	Anotacao an = null;
 	private String nome;
 	private String email;
 	private String senha;
@@ -65,7 +68,7 @@ public class FrontCrontroller extends HttpServlet {
 				//System.out.println(e.getMessage());
 			}
 			break;
-		case "cadastrar":
+		case "cadastrarusuario":
 			System.out.println("cadastrar Usuário");
 			this.nome = request.getParameter("nome");
 			this.email = request.getParameter("email");
@@ -117,9 +120,9 @@ public class FrontCrontroller extends HttpServlet {
 			break;	
 		case "excluirusuario":
 			System.out.println("Excluir Usuário");
-			String emailexcluir = request.getParameter("email");
+			this.email = request.getParameter("email");
 		    try {
-		    	us= ControllerFacade.excluirusuario(emailexcluir);
+		    	us= ControllerFacade.excluirusuario(this.email);
 		    	request.setAttribute("ok", "Usuario excluido com sucesso");
 		    	request.getRequestDispatcher("index.jsp").forward(request, response);
 				
@@ -131,7 +134,18 @@ public class FrontCrontroller extends HttpServlet {
 			break;
 		case "cadastrarAnotacao":
 			System.out.println("cadastro de Anotação");
-			
+			this.email = request.getParameter("email");
+			String desc = request.getParameter("desc");
+			String data = request.getParameter("data");
+			System.out.println("ok1");
+			System.out.println(data);
+			try {
+				an = ControllerFacade.addAnotacao(this.email,desc, data);
+				request.setAttribute("ok", "Anotação add");
+		    	request.getRequestDispatcher("usuario.jsp").forward(request, response);
+			} catch (ParseException e) {
+				e.printStackTrace();
+			}
 			
 			break;
 			

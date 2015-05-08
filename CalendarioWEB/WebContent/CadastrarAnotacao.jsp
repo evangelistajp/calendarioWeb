@@ -26,12 +26,10 @@
 	        <h2 class="form-signin-heading">Cadastrar Anotação</h2>
 	        
 	        <input type="hidden" name="email" value="${sessionScope.usuario}">
-	        <label for="inputname" class="sr-only">Nome</label>
-	        <input type="text" id="inputname" name="nome" class="form-control" placeholder="Nome" required autofocus>
 	        <label for="inputdesc" class="sr-only">Descrição</label>
-	        <input type="textArea" id="inputdesc" name="desc" class="form-control" placeholder="Descrição">
+	        <input type="text" id="inputdesc" name="desc" class="form-control" placeholder="Descrição">
 	        <label for="inputdata" class="sr-only">Data</label>
-	        <input type="date" id="inputdata" name="desc" class="form-control">
+	        <input type="date" id="inputdata" name="data" class="form-control">
 	        
 	        <br>
 	        <button class="btn btn-lg btn-primary btn-block" type="submit">Cadastrar</button>

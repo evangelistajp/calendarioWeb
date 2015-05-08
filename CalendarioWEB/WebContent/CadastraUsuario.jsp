@@ -15,7 +15,7 @@
 <body>
 	<body>
 	 <div class="container" style="width: 300px">
-	    <form class="form-signin" action="executa?op=cadastrar" method="POST">
+	    <form class="form-signin" action="executa?op=cadastrarusuario" method="POST">
 	        <h2 class="form-signin-heading">Cadastrar Usuário</h2>
 	        <label for="inputname" class="sr-only">Nome</label>
 	        <input type="text" id="inputname" name="nome" class="form-control" placeholder="Nome" required autofocus>

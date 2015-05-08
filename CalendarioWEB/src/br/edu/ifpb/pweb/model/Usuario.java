@@ -28,7 +28,7 @@ public class Usuario {
 	private boolean isadmin;
 	
 	@OneToMany(mappedBy="usuario", cascade = CascadeType.DETACH, fetch = FetchType.EAGER)
-	private List<Anotacao> eventos = new ArrayList<Anotacao>();
+	private List<Anotacao> anotacoes = new ArrayList<Anotacao>();
 	
 	public Usuario() {
 		
@@ -74,20 +74,20 @@ public class Usuario {
 		this.isadmin = isadmin;
 	}
 	
-	public List<Anotacao> getEventos() {
-		return eventos;
+	public List<Anotacao> getAnotacoes() {
+		return anotacoes;
 	}
 
-	public void setEventos(List<Anotacao> eventos) {
-		this.eventos = eventos;
+	public void setAnotacao(List<Anotacao> anotacao) {
+		this.anotacoes = anotacao;
 	}
 
-	public void setEvento(Anotacao evento){
-		this.eventos.add(evento);
+	public void setAnotacao(Anotacao anotacao){
+		this.anotacoes.add(anotacao);
 	}
 	
 	public void removerEvento(Anotacao evento){
-		this.eventos.remove(evento);
+		this.anotacoes.remove(evento);
 	}
 	
 	
@@ -95,7 +95,7 @@ public class Usuario {
 	public String toString() {
 		return "Usuario [id=" + id + ", nome=" + nome + ", email=" + email
 				+ ", senha=" + senha + ", isadmin=" + isadmin + ", eventos="
-				+ eventos + "]";
+				+ anotacoes + "]";
 	}
 
 
