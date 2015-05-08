@@ -15,6 +15,25 @@
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>
 </head>
 <body>
-
+	<c:if test="${sessionScope.usuario == null}">
+		<c:redirect url="index.jsp"></c:redirect>
+	</c:if>
+	<div class="container" style="width: 300px">
+		<div style='color:green'><h4>${ok}</h4></div>
+		<form class="form-signin" action="executa?op=editarAnotacao" method="POST">
+	        <h2 class="form-signin-heading">Editar Anotação</h2>
+	        <input type="hidden" name="id" value="${anotacao.id}">
+	        <label for="inputdesc" class="sr-only">Descrição</label>
+	        <input type="text" id="inputdesc" name="desc"  value="${anotacao.descricao}" placeholder="${anotacao.descricao}">
+	        <label for="inputdata" class="sr-only">Data</label>
+	        <input type="date" id="inputdata" name="data" value="${data}" class="form-control">
+	        
+	        <br>
+	        <button class="btn btn-lg btn-primary btn-block" type="submit">Alterar</button>
+	    </form>
+	    <a href="gerenciarAnotacao.jsp">voltar</a>
+	
+	
+	</div>
 </body>
 </html>

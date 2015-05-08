@@ -31,6 +31,7 @@ public class FrontCrontroller extends HttpServlet {
 	private String senha;
 	private String data;
 	private String id;
+	private String desc;
 	
 	
 	protected void doRequest(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
@@ -175,14 +176,22 @@ public class FrontCrontroller extends HttpServlet {
 		
 		
 			break;
-		case "editarAnotacao":
+			case "buscarAnotacao":
 			
-			this.id = request.getParameter("id");
-			
-			
-			
-			
-			
+				this.id = request.getParameter("id");
+								
+				try{
+					
+					an = ControllerFacade.buscaranotacao(this.id);
+					System.out.println(an);
+					request.setAttribute("anotacao", an);
+					request.setAttribute("data", an.getData());
+					request.getRequestDispatcher("editarAnotacao.jsp").forward(request, response);
+				
+				} catch (Exception e){
+					
+				}
+				
 			break;
 		case "excluirAnotacao":
 			
@@ -199,7 +208,23 @@ public class FrontCrontroller extends HttpServlet {
 			}
 			
 			break;	
+		case "editarAnotacao":
 			
+			this.desc = request.getParameter("desc");
+			this.data = request.getParameter("data");
+			this.id = request.getParameter("id");
+			System.out.println(this.data);				
+			try{
+				
+				an = ControllerFacade.editarAnotacao(this.id, this.desc, this.data);
+				request.setAttribute("ok", "Anotação alterada");
+		    	request.getRequestDispatcher("gerenciarAnotacao.jsp").forward(request, response);
+			
+			} catch (Exception e){
+				
+			}
+			
+		break;	
 
 		default:
 			break;

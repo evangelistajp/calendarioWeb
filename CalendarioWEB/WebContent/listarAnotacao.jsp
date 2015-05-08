@@ -28,7 +28,7 @@
 					<tr>
 						<td>${anotacao.descricao}</td>
 						<td>${anotacao.data}</td>
-						<td><a href="executa?op=editarAnotacao&id=${anotacao.id}">Editar</a></td>
+						<td><a href="executa?op=buscarAnotacao&id=${anotacao.id}">Editar</a></td>
 						<td><a href="executa?op=excluirAnotacao&id=${anotacao.id}">Excluir</a></td>
 					</tr>
 				</c:forEach>

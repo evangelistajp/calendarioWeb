@@ -49,6 +49,7 @@ public class ControllerFacade {
 		if (us != null) {
 			throw new CadastroException("Usuario ja cadastrado: " + email +"\n");
 		}
+		
 		us = new Usuario(nome, email, senha);
 		
 		daoUsuario.create(us);
@@ -144,15 +145,26 @@ public class ControllerFacade {
 		return an;
 	}
 	
-	public static Anotacao editaranotacao(String id){
+	public static Anotacao editarAnotacao(String id, String desc, String data) throws ParseException{
 		DAO.begin();
 		
 		
 		Anotacao anotacao = daoAnotacao.findByID(id);
 		
+		anotacao.setDescricao(desc);
+			
+		Date datafor = format.parse(data);
 		
-
-		return null;
+		anotacao.setData(datafor);
+		
+		//Usuario us = anotacao.getUsuario();
+		
+		daoAnotacao.update(anotacao);
+		//us.setAnotacao(anotacao);
+				
+		DAO.commit();
+		
+		return anotacao;
 		
 		
 	}
@@ -205,6 +217,16 @@ public class ControllerFacade {
 		DAO.close();
 		return usuario;
 	}
+
+	public static Anotacao buscaranotacao(String id) {
+		DAO.begin();
+				
+		Anotacao anotacao = daoAnotacao.findByID(id);
+		
+		
+		return anotacao;
+	}
+
 
 
 
