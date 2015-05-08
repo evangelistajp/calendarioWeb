@@ -1,8 +1,6 @@
 package br.edu.ifpb.pweb.filter;
 
 import java.io.IOException;
-import java.util.ArrayList;
-import java.util.List;
 
 import javax.servlet.Filter;
 import javax.servlet.FilterChain;
@@ -11,12 +9,6 @@ import javax.servlet.ServletException;
 import javax.servlet.ServletRequest;
 import javax.servlet.ServletResponse;
 import javax.servlet.annotation.WebFilter;
-import javax.servlet.http.HttpSession;
-
-import br.edu.ifpb.pweb.controller.ControllerFacade;
-import br.edu.ifpb.pweb.model.Anotacao;
-import br.edu.ifpb.pweb.model.Feriado;
-import br.edu.ifpb.pweb.model.Usuario;
 
 /**
  * Servlet Filter implementation class CalendarFilter

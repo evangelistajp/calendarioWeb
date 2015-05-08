@@ -2,7 +2,6 @@ package br.edu.ifpb.pweb.servlet;
 
 import java.io.IOException;
 import java.text.ParseException;
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.List;
 

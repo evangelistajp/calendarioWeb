@@ -11,7 +11,6 @@ import br.edu.ifpb.pweb.dao.DAOCalendario;
 import br.edu.ifpb.pweb.dao.DAOFeriado;
 import br.edu.ifpb.pweb.dao.DAOUsuario;
 import br.edu.ifpb.pweb.exception.CadastroException;
-import br.edu.ifpb.pweb.exception.ErroLogicoException;
 import br.edu.ifpb.pweb.model.Anotacao;
 import br.edu.ifpb.pweb.model.Calendario;
 import br.edu.ifpb.pweb.model.Feriado;
