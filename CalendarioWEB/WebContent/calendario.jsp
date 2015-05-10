@@ -204,9 +204,7 @@
 <body>
 	<div id='wrap'>
 		<div class="container">
-
-		<a href="executa?op=feriadosAll"><h4>Feriados</h4></a>
-		<c:if test="${not empty feriados}">
+			<c:if test="${not empty feriados}">
 			<table class="table">
 				<c:forEach var="feriado" items="${feriados}">
 					<tr>
